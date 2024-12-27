@@ -1,0 +1,17 @@
+name: Enforce Branch Naming Convention
+
+on:
+  create:
+    branches:
+      - '**'
+
+jobs:
+  enforce-naming:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        run: |
+          if [[ ! "${{ github.ref_name }}" =~ ^(feature/|hotfix/) ]]; then
+            echo "Branch name '${{ github.ref_name }}' does not follow the required pattern (feature/ or hotfix/)."
+            exit 1
+          fi
