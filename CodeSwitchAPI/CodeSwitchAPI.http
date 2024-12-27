@@ -1,0 +1,6 @@
+@CodeSwitchAPI_HostAddress = http://localhost:5207
+
+GET {{CodeSwitchAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
