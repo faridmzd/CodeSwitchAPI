@@ -1,0 +1,59 @@
+name: Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      coverage-file: ${{ steps.save-coverage.outputs.path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build the application
+        run: dotnet build --no-restore
+
+      - name: Run Unit Tests with Coverage
+        run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage"
+
+      - name: Save Coverage Report
+        id: save-coverage
+        run: echo "path=TestResults/coverage.json" >> $GITHUB_ENV
+
+  build-docker-image:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: |
+          docker build -t my-app:latest .
+
+  code-coverage-check:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Code Coverage Check
+        run: |
+          coverage=$(grep -oP '"LineCoverage":\K[0-9.]+' ${{ env.path }} | awk '{sum+=$1} END {print sum/NR}')
+          echo "Code coverage is ${coverage}%"
+          if (( $(echo "$coverage < 80" | bc -l) )); then
+            echo "Code coverage is below 80%. Failing the job."
+            exit 1
+          elif (( $(echo "$coverage > 90" | bc -l) )); then
+            echo "Code coverage exceeds 90%. Great job!"
+          else
+            echo "Code coverage is within the acceptable range (80-90%)."
