@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Behaviors\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodeSwitch.Domain\CodeSwitch.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

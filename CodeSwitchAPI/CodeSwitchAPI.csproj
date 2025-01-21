@@ -14,7 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Folder Include="Middlewares\" />
+    <Folder Include="Filters\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodeSwitch.Application\CodeSwitch.Application.csproj" />
+    <ProjectReference Include="..\CodeSwitch.Infrastructure\CodeSwitch.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
