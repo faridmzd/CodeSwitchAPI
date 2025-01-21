@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSwitch.Infrastructure",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C22F6799-6AA8-4CFA-B3DB-6A7CF8E9CEE5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2976B444-8D40-4DC1-B4A7-B493ACD14CAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FC1973A0-2E78-4D8F-9682-5ADBE18A7B19} = {C22F6799-6AA8-4CFA-B3DB-6A7CF8E9CEE5}
+		{D6C41C18-7DAC-475C-AE11-2FC21B5AF3FF} = {C22F6799-6AA8-4CFA-B3DB-6A7CF8E9CEE5}
+		{F9616312-5FA2-481C-999F-9F7A40776DA0} = {C22F6799-6AA8-4CFA-B3DB-6A7CF8E9CEE5}
+		{D7DEFE51-257B-4311-A499-7E09CE1E69EA} = {C22F6799-6AA8-4CFA-B3DB-6A7CF8E9CEE5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1955382B-2414-4675-BE5D-14E762C559BB}
